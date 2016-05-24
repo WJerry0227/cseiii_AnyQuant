@@ -1,0 +1,17 @@
+.label {
+    -fx-font-size: 16pt;
+    -fx-text-fill: Black;
+    -fx-opacity: 0.7;
+}
+
+
+
+
+#pane{
+	-fx-background-color: white;
+    -fx-background-image: url("../picture/waiting.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 512 334;
+    -fx-background-position: top;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}

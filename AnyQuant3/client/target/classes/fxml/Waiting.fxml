@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="pane" prefHeight="384.0" prefWidth="512.0" style="-fx-background-image: picture/11.jpg;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main.controller.WaitingController">
+   <children>
+      <Canvas height="420.0" width="512.0" />
+      <Label layoutX="59.0" layoutY="386.0" prefHeight="20.0" prefWidth="284.0" text="Please wait. Loading ..." />
+   </children>
+</AnchorPane>

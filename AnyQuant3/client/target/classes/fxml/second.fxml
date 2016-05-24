@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main.controller.CSecond">
+   <children>
+      <Pane fx:id="graph1" layoutX="441.0" layoutY="1.0" prefHeight="267.0" prefWidth="585.0" />
+      <Pane fx:id="graph2" layoutX="441.0" layoutY="275.0" prefHeight="276.0" prefWidth="585.0" />
+      <TableView fx:id="secondTable" onMouseClicked="#onMouseClicked" onMouseEntered="#onMouseEntered" prefHeight="544.0" prefWidth="441.0">
+         <columns>
+            <TableColumn fx:id="stockNumber" text="股票编号" />
+            <TableColumn fx:id="stockName" prefWidth="87.0" text="股票名称" />
+            <TableColumn fx:id="amount" prefWidth="102.0" text="成交量" />
+            <TableColumn fx:id="ups" prefWidth="77.0" text="涨幅(%)" />
+            <TableColumn fx:id="swing" prefWidth="94.0" text="振幅(%)" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>

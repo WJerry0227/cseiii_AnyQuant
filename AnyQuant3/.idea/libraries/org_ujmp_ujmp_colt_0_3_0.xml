@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="org.ujmp:ujmp-colt:0.3.0" type="repository">
+    <properties maven-id="org.ujmp:ujmp-colt:0.3.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/ujmp-colt-0.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/colt-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/concurrent-1.3.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ujmp-core-0.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-20141113.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/ujmp-colt-0.3.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/ujmp-colt-0.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

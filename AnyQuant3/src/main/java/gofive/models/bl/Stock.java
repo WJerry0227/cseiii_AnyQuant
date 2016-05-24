@@ -81,9 +81,7 @@ public class Stock {//pass
 
     public double getAvg(int day){
         if (day < data.length - 1) return -1;
-        double up = 0;
-        //TODO
-        return -1;
+        double 
     }
 
     public Stock(){ }

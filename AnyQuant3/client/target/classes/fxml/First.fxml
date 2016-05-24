@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main.controller.CFirst">
+   <children>
+      <Pane prefHeight="35.0" prefWidth="1024.0" styleClass="background">
+         <children>
+            <Button fx:id="sysBt" mnemonicParsing="false" onAction="#onClickSysBt" prefHeight="35.0" prefWidth="55.0" text="系统" />
+            <Button fx:id="anaBt" layoutX="55.0" mnemonicParsing="false" onAction="#onClickAnaBt" prefHeight="35.0" prefWidth="64.0" text="分析" />
+            <Button fx:id="grailBt" layoutX="119.0" mnemonicParsing="false" onAction="#onClickGrailBt" prefHeight="35.0" prefWidth="64.0" text="大盘" />
+            <Button fx:id="collectBt" layoutX="183.0" mnemonicParsing="false" onAction="#onClickCollectBt" prefHeight="35.0" prefWidth="64.0" text="收藏" />
+            <Button fx:id="returnBt" layoutX="247.0" mnemonicParsing="false" onAction="#onClickReturnBt" prefHeight="35.0" prefWidth="64.0" text="返回" />
+         </children>
+      </Pane>
+      <Pane layoutY="35.0" prefHeight="20.0" prefWidth="1024.0" styleClass="background">
+         <children>
+            <Label fx:id="promptInfo" prefHeight="20.0" prefWidth="377.0" text="行业数据分析：" />
+         </children>
+      </Pane>
+      <Pane fx:id="contentPane" layoutY="55.0" prefHeight="550.0" prefWidth="1024.0" styleClass="background">
+         <children>
+            <ScrollPane prefHeight="549.0" prefWidth="441.0">
+               <content>
+                  <TableView fx:id="firstTable" prefHeight="544.0" prefWidth="447.0">
+                    <columns>
+                      <TableColumn fx:id="id" prefWidth="201.0" text="行业名称" />
+                      <TableColumn fx:id="data1" prefWidth="228.0" text="一周内平均涨幅" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <Pane fx:id="bottomPane" layoutY="605.0" prefHeight="164.0" prefWidth="1024.0" stylesheets="@../css/DarkTheme.css">
+         <children>
+            <DatePicker fx:id="startTime" layoutX="564.0" layoutY="31.0" prefHeight="23.0" prefWidth="139.0" />
+            <DatePicker fx:id="endTime" layoutX="735.0" layoutY="31.0" prefHeight="23.0" prefWidth="139.0" />
+            <Label fx:id="startLabel" layoutX="564.0" layoutY="3.0" text="开始时间" />
+            <Label fx:id="endLabel" layoutX="735.0" layoutY="3.0" text="结束时间" />
+            <ComboBox fx:id="compare" layoutX="627.0" layoutY="31.0" prefHeight="29.0" prefWidth="95.0" promptText="比较条件" />
+            <Button fx:id="sure" layoutX="899.0" layoutY="31.0" mnemonicParsing="false" onAction="#sureButton" text="确定" />
+            <ComboBox fx:id="field" layoutX="460.0" layoutY="33.0" prefWidth="150.0" promptText="删选条件" />
+            <TextField fx:id="value" layoutX="761.0" layoutY="31.0" prefHeight="29.0" prefWidth="85.0" />
+            <Button fx:id="collection" layoutX="149.0" layoutY="29.0" mnemonicParsing="false" onAction="#addToCollection" text="添加到收藏夹" />
+            <Button fx:id="removeFrom" layoutX="307.0" layoutY="29.0" mnemonicParsing="false" onAction="#clickRemoveFrom" text="移除" />
+            <Label fx:id="idprompt" layoutX="33.0" layoutY="31.0" prefHeight="29.0" prefWidth="95.0" text="股票id" />
+            <TextField fx:id="stockid" layoutX="174.0" layoutY="31.0" />
+            <Label fx:id="conclusion" layoutX="84.0" layoutY="12.0" prefHeight="68.0" prefWidth="377.0" wrapText="true" />
+         </children>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="label-bright" />
+         </styleClass>
+      </Pane>
+   </children>
+</Pane>

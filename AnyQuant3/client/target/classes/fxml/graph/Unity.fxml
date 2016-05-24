@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="pane" prefHeight="550.0" prefWidth="801.0" styleClass="background" stylesheets="@../../css/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.graph.controller.UnityController">
+   <children>
+      <TabPane prefHeight="550.0" prefWidth="801.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab fx:id="kline_tab" text="K线图">
+               <content>
+                  <AnchorPane fx:id="KLinepane" />
+               </content>
+            </Tab>
+            <Tab fx:id="swing_tab1" text="移动平均图">
+               <content>
+                  <AnchorPane fx:id="MApane" />
+               </content>
+            </Tab>
+          <Tab fx:id="price_tab" text="价格图">
+               <content>
+                  <AnchorPane fx:id="Pricepane" />
+               </content>
+            </Tab>
+            <Tab fx:id="volume_tab" text="成交量图">
+               <content>
+                  <AnchorPane fx:id="Volumepane" />
+               </content>
+            </Tab>
+            <Tab fx:id="increase_tab" text="涨幅图">
+               <content>
+                  <AnchorPane fx:id="Increasepane" />
+               </content>
+            </Tab>
+            <Tab fx:id="swing_tab" text="振幅图">
+               <content>
+                  <AnchorPane fx:id="Swingpane" />
+               </content>
+            </Tab>
+            <Tab fx:id="macd_tab" text="MACD">
+               <content>
+                  <AnchorPane fx:id="MACDpane" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

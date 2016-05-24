@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>股票系统首页</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/my.css">
+			
+		<script src="js/HtmlController/Grail.js"></script>	
+		<script src="js/HtmlController/SearchStock.js"></script>
+		<script>setData()</script>
+	</head>
+
+	<body style="background: url(img/background.png); ">
+
+		<div class="container" class="row">
+
+			<h1 style="font-weight: bold; font-size: 50px;">IStock</h1>
+			<h3>你的股票分析管家!</h3>
+			<hr style="height:1px;border:none;border-top:1px solid darkgrey;" />
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+						<a class="navbar-brand" href="index.html"><strong>首页</strong></a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="Grail.html">大盘 <span class="sr-only">(current)</span></a></li>
+							<li><a href="Individual.html">个股</a></li>
+							<li><a href="Industry.html">行业</a></li>
+							<li><a href="ranking.html">排行</a></li>
+							<li><a href="Compare.html">对比</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助 <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">文档</a></li>
+									<li><a href="#">支持</a></li>
+								</ul>
+							</li>
+						</ul>
+						<!-- 右边的 -->
+						<ul class="nav navbar-nav navbar-right">
+							<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="股票ID/Name">
+								</div>
+								<button type="submit" class="btn btn-default" onclick="searchByID()">查询</button>
+							</form>
+							<li><a href="#">我的收藏</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+			<hr style="height:1px;border:none;border-top:1px solid darkgrey;" />
+		</div>
+
+		<!--
+                    	作者：wangjiawei0227@163.com
+                    	时间：2016-05-04
+                    	描述：开始画图
+                    -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-4">
+									<br />
+									<h2 align="center" style="font-size:40px"><strong>沪深300(000300)</strong></h2>
+								</div>
+								<div class="col-md-2">
+									<p align="center" style="font-size:40px">3020.18</p>
+									<div class="container">
+										<div class="row">
+											<div class="col-md-1">
+												<p align="center">-50.72</p>
+												<p align="center">-3.44%</p>
+											</div>
+											<div class="col-md-1">
+												<p style="font-size:40px"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> </span></p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<br />
+									<table class="table" rules="none"  style="font-size: 20px;">
+							<tbody>
+								<tr>
+									<td>今开:</td>
+									<td></td>
+									<td>最高价:</td>
+									<td></td>
+									<td>成交量:</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>昨收:</td>
+									<td></td>
+									<td>最低价:</td>
+									<td></td>
+									<td>成交额:</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+				</div>
+			</div>
+			<br/>
+			
+			<div style="border: 1px solid #CCCCCC;">
+			<div class="row">
+				<div class="col-md-12" id="KLine" style="height:350px; solid #ccc;padding:10px;"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" id="chart2" style="height:150px; solid #ccc;padding:10px;"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" id="chart3" style="height:150px; solid #ccc;padding:10px;"></div>
+			</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a href="#macd" data-toggle="tab">MACD</a></li>
+						<li><a href="#kdj" data-toggle="tab">KDJ</a></li>
+						<li><a href="#rsi" data-toggle="tab">RSI</a></li>
+						<li><a href="#boll" data-toggle="tab">BOLL</a></li>
+						<li><a href="#wr" data-toggle="tab">WR</a></li>
+						<li><a href="#asi" data-toggle="tab">ASI</a></li>
+						<li><a href="#bias" data-toggle="tab">BIAS</a></li>
+						<li><a href="#vr" data-toggle="tab">VR</a></li>
+
+					</ul>
+					<div id="myTabContent" class="tab-content">
+						<div id="macd" class="tab-pane fade in active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+						<div id="kdj" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+						<div id="rsi" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+						<div id="boll" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+						<div id="wr" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+						<div id="asi" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+						<div id="bias" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+						<div id="vr" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
+					</div>
+
+				</div>
+
+				<div class="col-md-12 ">
+					<br />
+					<br />
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">统计指标分析</h3>
+						</div>
+						<div class="panel-body">
+							Panel content
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		</div>
+
+		<div class="container">
+			<div class=" row ">
+				<hr style="height:1px;border:none;border-top:1px solid darkgrey;" />
+				<br />
+				<div class="col-md-12" id="BarLine" style="height:500px;"></div>
+				<br />
+			</div>
+			<br />
+			<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title" align="center">大盘总结与预测</h3>
+					</div>
+					<div class="panel-body">
+						Panel content
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--
+        	作者：wangjiawei0227@163.com
+        	时间：2016-05-08
+        	描述：结尾结束段
+        -->
+		<div class="container">
+			<div class="row">
+				<br />
+				<hr style="height:1px;border:none;border-top:1px solid darkgrey;" />
+				<p align="center" style="font-size: 11px;">Copyright©Gang_of_Five</p>
+				<p align="center" style="font-size: 11px;">Gang_of_Five小组版权所有</p>
+
+				<p align="center">
+					<a href="http://news.10jqka.com.cn/c/20100105/61833421.shtml" rel="nofollow">关于IStock</a><span>|</span>
+					<a href="http://www.10jqka.com.cn/modules.php?name=what&amp;page=cooperate" rel="nofollow">内容合作</a><span>|</span>
+					<a href="http://www.10jqka.com.cn/hexin_contact.htm" rel="nofollow">联系我们</a><span>|</span>
+					<a href="http://news.10jqka.com.cn/msg/" rel="nofollow">网友意见箱</a>
+				</p>
+
+			</div>
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/jquery-1.12.3.min.js "></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js "></script>
+		<!--Chart and its js-->
+		<script src="js/echarts.min.js"></script>
+		<script src="js/ChartController/GrailChart.js"></script>
+		
+	</body>
+
+</html>

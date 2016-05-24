@@ -1,0 +1,95 @@
+/*
+Copyright 2014 Zoi Capital, LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ */
+.candlestick-tooltip-label {
+    -fx-font-size: 1.25em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #666666;
+    -fx-padding: 2 5 2 0;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: red
+}
+.chart-horizontal-grid-lines {
+	-fx-horizontal-grid-lines-visible: false;
+	-fx-horizontal-zero-line-visible:false;
+    -fx-stroke: red
+}
+
+.candlestick-average-line {
+    -fx-stroke: #106ece;
+    -fx-stroke-width: 2px;
+}
+
+.candlestick-candle {
+    -fx-background-color: #1d1d1d;
+}
+
+.candlestick-line.close-above-open {
+    -fx-stroke: rgb(255,34,34,1.00);
+    -fx-stroke-width: 1px;
+}
+
+.candlestick-line.open-above-close {
+    -fx-stroke: rgb(25,225,25,1.00);
+    -fx-stroke-width: 1px;
+}
+
+
+
+.candlestick-bar.close-above-open {
+    -fx-background-color: rgb(255,34,34,1.00);
+    -fx-border-width: 1, 1,1,1;
+    -fx-border-color: #e2e2e2;
+}
+
+.candlestick-bar.open-above-close {
+    -fx-background-color: rgb(25,225,25,1.00);
+    -fx-border-width: 1, 1,1,1;
+    -fx-font-weight: bold;
+    -fx-border-color: #e2e2e2;
+}
+
+
+.label-gray {
+    -fx-background-color: rgb(25,25,25,0.70);
+}
+
+.axis{
+	-fx-tick-label-fill: red;
+	-fx-tick-label-font-size: 12px;
+}
+.chart-title {
+     -fx-text-fill: red;
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Light";
+}
+
+
+/*{
+
+}
+*/
+.chart {
+  -fx-background-color: #1d1d1d;
+}
+.fx-background-color {
+  -fx-background-color: red;
+}
+.chart-plot-background {
+    -fx-background-color: #1d1d1d;
+
+}
