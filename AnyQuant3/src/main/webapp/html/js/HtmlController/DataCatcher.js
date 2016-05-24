@@ -45,6 +45,20 @@ function jData() {
     req.send(null);
 }
 
+function statistics(dataDeal){
+	var req = createAjaxObj();
+    req.open("get",baseUrl+"method=",false);
+    req.setRequestHeader("accept","application/json")
+    req.onreadystatechange = function(){
+        if (req.readyState==4 && req.status == 200) {
+        	eval("var result="+req.responseText);
+            alert(result);
+        }
+    }
+    req.send(null);
+}
+
+
 function getStockList()
 {
 	//var result;

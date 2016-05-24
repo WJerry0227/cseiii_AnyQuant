@@ -1,5 +1,5 @@
-function setStatistics() {
-	var data = [3020.18, -5.0, -71, 3022.2, 3045.2, 3079.2, 3011.3, 150000, 5600020];
+function setStatistics(data) {
+	//var data = [3020.18, -5.0, -71, 3022.2, 3045.2, 3079.2, 3011.3, 150000, 5600020];
 
 	if (data[1] > 0) {
 		document.getElementById("now").innerHTML = "<span style='color:red'>" + data[0] + "</span>";
@@ -988,7 +988,7 @@ window.onresize = function() {
 }
 
 function setAll(){
-	setStatistics();
+	//setStatistics();
 	setMACDChart();
 	setKline();
 	setStatisticConclusion();

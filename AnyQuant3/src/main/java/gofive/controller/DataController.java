@@ -32,8 +32,8 @@ public class DataController {
 	    //return list;
 	  }
 	  
-	  @RequestMapping(params="method=graiList",method=RequestMethod.GET)
-	  public @ResponseBody StockVO grailToday() throws Exception{ 
+	  @RequestMapping(params="method=statistics",method=RequestMethod.GET)
+	  public @ResponseBody StockVO statistics() throws Exception{ 
 	     String id;
 	     id = "grail";
 	     StockVO grailVO = stockService.getTodayStockVO(id);
