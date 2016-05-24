@@ -1,8 +1,8 @@
 package gofive.vo.chart;
 
 public class MACDChartVO {
-	double macd, ema12, ema26, diff, bar;
-    String date;
+	public double macd, ema12, ema26, diff, bar;
+    public String date;
     public MACDChartVO(){
 
     }

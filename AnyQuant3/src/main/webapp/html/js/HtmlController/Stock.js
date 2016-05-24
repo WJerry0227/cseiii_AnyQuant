@@ -1,3 +1,4 @@
-   $(function () {
-      $('#myTab li:eq(1) a').tab('show');
-   });
+$(function () {
+    $('#myTab li:eq(1) a').tab('show');
+});
+   

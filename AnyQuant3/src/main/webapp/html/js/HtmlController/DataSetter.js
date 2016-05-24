@@ -1,5 +1,5 @@
-function setStatistics() {
-	var data = [3020.18, -5.0, -71, 3022.2, 3045.2, 3079.2, 3011.3, 150000, 5600020];
+function setStatistics(data) {
+	//var data = [3020.18, -5.0, -71, 3022.2, 3045.2, 3079.2, 3011.3, 150000, 5600020];
 
 	if (data[1] > 0) {
 		document.getElementById("now").innerHTML = "<span style='color:red'>" + data[0] + "</span>";
@@ -909,6 +909,50 @@ function setAnalysisChart() {
 
 }
 
+function setInOutChart(){
+	//大单流入、中单流入、小单流入、大单流出、中单流出、小单流出
+	var datas = [1335,2310,2340,1350,1548,1548];
+	
+	var InoutChartData = {
+    title : {
+        text: '成交分布表',
+         x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['大单流入','中单流入','小单流入','大单流出','中单流出','小单流出']
+    },
+    series : [
+        {
+            name: '成交分布表',
+            type: 'pie',
+            radius : '55%',
+            center: ['55%', '60%'],
+            data:[
+                {value:datas[0], name:'大单流入'},
+                {value:datas[1], name:'中单流入'},
+                {value:datas[2], name:'小单流入'},
+                {value:datas[3], name:'大单流出'},
+                {value:datas[4], name:'中单流出'},
+                {value:datas[5], name:'小单流出'},
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+}
+
 var myChart = echarts.init(document.getElementById('KLine'));
 var myChart2 = echarts.init(document.getElementById('chart2'));
 var myChart3 = echarts.init(document.getElementById('chart3'));
@@ -918,6 +962,8 @@ var kdjChart = echarts.init(document.getElementById('kdj'));
 var rsiChart = echarts.init(document.getElementById('rsi'));
 var bollChart = echarts.init(document.getElementById('boll'));
 var wrChart = echarts.init(document.getElementById('wr'));
+
+var inOutChart = echarts.init(document.getElementById('InOutChart'));
 
 window.onresize = function() {
 	myChart.resize();
@@ -929,6 +975,7 @@ window.onresize = function() {
 	rsiChart.resize();
 	bollChart.resize();
 	wrChart.resize();
+	inOutChart.resize();
 	//	statistics.resize();
 	//	macdchart.resize();
 	//	myChart4.resize();
@@ -941,13 +988,13 @@ window.onresize = function() {
 }
 
 function setAll(){
-	setStatistics();
-				setMACDChart();
-				setKline();
-		setStatisticConclusion();
-		setAnalysisChart();
-		setKDJChart();
-		setRSIChart();
-		setBOLLChart();
-		setWRChart();
+	//setStatistics();
+	setMACDChart();
+	setKline();
+	setStatisticConclusion();
+	setAnalysisChart();
+	setKDJChart();
+	setRSIChart();
+	setBOLLChart();
+	setWRChart();
 }
