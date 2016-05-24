@@ -52,16 +52,20 @@ public class Stock {//pass
     /**
      * 获取近期数据
      * @param id 股票编号
-     * @param flag 标志位
+     * @param days 距今多少天
      */
-    public Stock (String id, int flag){
+    public Stock (String id, int days){
         StockName name = StockName.getInstance();
         this.id = id;
         this.name = name.getName(id);
         LocalDate now = LocalDate.now();
-        now.minusDays(10);
-        String n = now.toString();
-        data = StockInfo.query(id).where("volume > 0 and date > "+n);
+        LocalDate dest = now.minusDays(days);
+        String sql = "volume > 0 and date > \""+ dest.toString() + "\"";
+        System.out.println(sql);
+        data = StockInfo.query(id).where(sql);
+        if (data != null){
+            System.out.println("get:" + id + " " + data.length);
+        }
     }
 
     /**
@@ -74,14 +78,16 @@ public class Stock {//pass
         this.name = name.getName(id);
         data = StockInfo.query(id).where("volume > 0");
         if (data != null){
-            System.out.println("get:" + id);
+            System.out.println("get:" + id + " " + data.length);
         }
         indicators = new HashMap<>();
     }
 
     public double getAvg(int day){
-        if (day < data.length - 1) return -1;
-        double 
+        if (data.length < (day + 1)) return -1;
+        double a = (double) data[data.length - 1].get("close");
+        double b = (double) data[data.length - 1 - day].get("close");
+        return (a - b) / b;
     }
 
     public Stock(){ }
