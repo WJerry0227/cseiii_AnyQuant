@@ -9,14 +9,16 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/my.css">
 			
-		<script src="js/HtmlController/Grail.js"></script>	
-		<script src="js/HtmlController/SearchStock.js"></script>
+		
+		<script src="js/HtmlController/SearchStock.js"></script>		
+
 		<script>setData()</script>
 		<script src="js/HtmlController/DataSetter.js"></script>
 		<script src="js/HtmlController/DataCatcher.js"></script>
 		<script>
 			statistics(setStatistics);
 		</script>
+		
 	</head>
 
 	<body style="background: url(img/background.png); ">
@@ -89,15 +91,15 @@
 									<h2 align="center" style="font-size:40px"><strong>沪深300(000300)</strong></h2>
 								</div>
 								<div class="col-md-2">
-									<p align="center" style="font-size:40px">3020.18</p>
+									<p align="center" style="font-size:40px" id="now">3020.18</p>
 									<div class="container">
 										<div class="row">
 											<div class="col-md-1">
-												<p align="center">-50.72</p>
-												<p align="center">-3.44%</p>
+												<p align="center" id="increaseValue">-50.72</p>
+												<p align="center" id="increase"></p>
 											</div>
 											<div class="col-md-1">
-												<p style="font-size:40px"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> </span></p>
+												<p style="font-size:40px" id="graphIcon"></p>
 											</div>
 										</div>
 									</div>
@@ -108,19 +110,19 @@
 							<tbody>
 								<tr>
 									<td>今开:</td>
-									<td></td>
+									<td id="open"></td>
 									<td>最高价:</td>
-									<td></td>
+									<td id="high"></td>
 									<td>成交量:</td>
-									<td></td>
+									<td id="volume"></td>
 								</tr>
 								<tr>
 									<td>昨收:</td>
-									<td></td>
+									<td id="close"></td>
 									<td>最低价:</td>
-									<td></td>
+									<td id="low"></td>
 									<td>成交额:</td>
-									<td></td>
+									<td id="volumeValue"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -154,10 +156,6 @@
 						<li><a href="#rsi" data-toggle="tab">RSI</a></li>
 						<li><a href="#boll" data-toggle="tab">BOLL</a></li>
 						<li><a href="#wr" data-toggle="tab">WR</a></li>
-						<li><a href="#asi" data-toggle="tab">ASI</a></li>
-						<li><a href="#bias" data-toggle="tab">BIAS</a></li>
-						<li><a href="#vr" data-toggle="tab">VR</a></li>
-
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div id="macd" class="tab-pane fade in active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
@@ -165,9 +163,6 @@
 						<div id="rsi" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
 						<div id="boll" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
 						<div id="wr" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
-						<div id="asi" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
-						<div id="bias" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
-						<div id="vr" class="tab-pane fade active" style="height:300px;border:1px solid #ccc;padding:10px;"></div>
 					</div>
 
 				</div>
@@ -179,7 +174,7 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">统计指标分析</h3>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" id="statisticsPanel">
 							Panel content
 						</div>
 					</div>
@@ -203,7 +198,7 @@
 					<div class="panel-heading">
 						<h3 class="panel-title" align="center">大盘总结与预测</h3>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="finalConclusion">
 						Panel content
 					</div>
 				</div>
@@ -240,8 +235,9 @@
 		<script src="js/bootstrap.min.js "></script>
 		<!--Chart and its js-->
 		<script src="js/echarts.min.js"></script>
-		<script src="js/ChartController/GrailChart.js"></script>
-		
+		<script src="js/HtmlController/Grail.js"></script>	
+		<script src="js/HtmlController/DataSetter.js"></script>
+		<script>setAll();</script>
 	</body>
 
 </html>
