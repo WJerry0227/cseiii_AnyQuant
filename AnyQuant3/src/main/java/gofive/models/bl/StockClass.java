@@ -1,12 +1,10 @@
 package gofive.models.bl;
 import gofive.models.bl.consts.Industry;
+import gofive.models.bl.indicator.Indicator;
 import gofive.util.StockClassLoader;
 import gofive.vo.StockVO;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,7 +22,8 @@ public class StockClass {
     HashMap<String,Stock> stockInfo;//当前类下全部股票具体信息，key = id , value = datapo(默认两天)
 
     public static void main(String[] args) {
-        StockClass sc = new StockClass(Industry.NONGLINMUYU);
+        StockClass sc = new StockClass(Industry.CAIKUANG);
+        System.out.println("avg:" + sc.getAvgUp(5));
     }
 
     public StockVO[] getStockList() {
@@ -60,9 +59,39 @@ public class StockClass {
      * @return 平均涨幅
      */
     public double getAvgUp(){
-        return 0;
+        double all = 0;
+        int num = 0;
+        Set set = stockInfo.entrySet();
+        Iterator i = set.iterator();
+        while (i.hasNext()){
+            Map.Entry entry = (Map.Entry) i.next();
+            Stock s = (Stock) entry;
+            double a = s.getAvg(1);
+            if (a != -1){
+                all += s.getAvg(1);
+                num += 1;
+            }
+
+        }
+        return all / num;
     }
-    public double getAvgUp(int x){return 0;}
+    public double getAvgUp(int x){
+        double all = 0;
+        int num = 0;
+        Set set = stockInfo.entrySet();
+        Iterator i = set.iterator();
+        while (i.hasNext()){
+            Map.Entry entry = (Map.Entry) i.next();
+            Stock s = (Stock) entry.getValue();
+            double a = s.getAvg(5);
+            if (a != -1){
+                all += s.getAvg(5);
+                num += 1;
+            }
+
+        }
+        return all / num;
+    }
 
     /**
      * 获取本类全部股票数据
@@ -75,15 +104,22 @@ public class StockClass {
             fixedThreadPool.execute(new Runnable() {
                 @Override
                 public void run() {
-                    Stock stock = new Stock(list[index]);
+                    Stock stock = new Stock(list[index],30);
                     stockInfo.put(list[index],stock);
                 }
             });
         }
+        fixedThreadPool.shutdown();
         while (true){
             if (fixedThreadPool.isTerminated()){
                 System.out.println("done!");
-                fixedThreadPool.shutdown();
+//                fixedThreadPool.shutdown();
+                break;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 //        for (int i = 0 ; i < list.length; i ++){

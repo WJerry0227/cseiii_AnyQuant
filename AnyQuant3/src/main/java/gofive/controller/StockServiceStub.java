@@ -57,7 +57,7 @@ public class StockServiceStub implements StockService {
 	}
 
 	@Override
-	public IndicatorVO[] getStatisticsConclusion(String id, String date) {
+	public IndicatorVO[] getConclusion(String id, String date, String indicator) {
 		return new IndicatorVO[0];
 	}
 

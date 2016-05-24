@@ -82,9 +82,11 @@ public class StockServiceImpl implements StockService{
     }
 
     @Override
-    public IndicatorVO[] getStatisticsConclusion(String id, String date) {
+    public IndicatorVO[] getConclusion(String id, String date, String indicator) {
         return new IndicatorVO[0];
     }
+
+
 
     @Override
     public DataList[] getSwingList(String id, String startTime, String endTime) {
