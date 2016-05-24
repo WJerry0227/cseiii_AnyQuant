@@ -57,8 +57,11 @@ function statistics(dataDeal){
         	alert(result["date"]);
         	//alert(result[date]);
             baseData = [];
-            baseData.push(result["date"]);
-            alert(baseData[0]);
+            baseData.push(187);
+            //baseData.push(result[]);
+            var data = [3020.18, 5.0, -71, 3022.2, 3045.2, 3079.2, 3011.3, 150000, 5600020];
+            //alert(baseData[0]);
+            dataDeal(data);
             
         }
     }
