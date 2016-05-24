@@ -47,12 +47,19 @@ function jData() {
 
 function statistics(dataDeal){
 	var req = createAjaxObj();
-    req.open("get",baseUrl+"method=",false);
+    req.open("get",baseUrl+"method=statistics",false);
     req.setRequestHeader("accept","application/json")
     req.onreadystatechange = function(){
         if (req.readyState==4 && req.status == 200) {
+        	alert(req.responseText);
         	eval("var result="+req.responseText);
-            alert(result);
+            //alert(result);
+        	alert(result["date"]);
+        	//alert(result[date]);
+            baseData = [];
+            baseData.push(result["date"]);
+            alert(baseData[0]);
+            
         }
     }
     req.send(null);
