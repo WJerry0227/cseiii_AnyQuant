@@ -1,7 +1,6 @@
 package gofive.models.bl.calculator.index;
 
 import gofive.models.db.DBase;
-import gofive.models.db.StockInfo;
 
 import java.util.ArrayList;
 
@@ -12,16 +11,8 @@ import java.util.ArrayList;
  */
 public class RSICalculator implements Calculator {
 
-//    public static void main(String[] args) {
-//        DBase[] data = StockInfo.query("600000").where("volume > 0");
-//        RSICalculator rsiCalculator = new RSICalculator();
-//        rsiCalculator.defaultCal(data);
-//        System.out.println();
-//    }
-
     @Override
     public void defaultCal(DBase[] data) {
-        calculate(data,6);
         calculate(data, 14);
     }
 
@@ -39,17 +30,17 @@ public class RSICalculator implements Calculator {
                 data.add(dataPOs[i]);
             }
         }
-        if (data.size() <= n) return;
+
 //      (old)0,1,2,3,4,5,6,7,8,9(new)
         for(int i = n  ;i < data.size(); i++){
             double up = 0;
             double down = 0;
             for(int j = 0 ; j < n; j++){
                 double temp = (double)data.get(i - j).get("close") - (double)data.get(i - j - 1).get("close");
-                if(temp > 0) up += temp;
-                else down -= temp;
+                if(temp > 0) up += (temp / n);
+                else down -= (temp / n);
             }
-            double rs = (up / n)/(down / n);
+            double rs = up/down;
             double rsi = 100 - 100/(rs + 1);
             data.get(i).setValue("RSI"+n,rsi);
         }
