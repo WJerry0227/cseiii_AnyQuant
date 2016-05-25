@@ -48,17 +48,18 @@ function jData() {
 function statistics(dataDeal){
 	var req = createAjaxObj();
     req.open("get",baseUrl+"method=statistics",false);
-    req.setRequestHeader("accept","application/json")
+    req.setRequestHeader("accept","application/json");
     req.onreadystatechange = function(){
         if (req.readyState==4 && req.status == 200) {
-        	alert(req.responseText);
+        	//alert(req.responseText);
         	eval("var result="+req.responseText);
             //alert(result);
-        	alert(result["date"]);
+        	//alert(result["date"]);
         	//alert(result[date]);
             baseData = [];
             baseData.push(187);
             //baseData.push(result[]);
+	    //todo
             var data = [3020.18, 5.0, -71, 3022.2, 3045.2, 3079.2, 3011.3, 150000, 5600020];
             //alert(baseData[0]);
             dataDeal(data);
@@ -67,8 +68,38 @@ function statistics(dataDeal){
     }
     req.send(null);
 }
+function kLineData(){
+	alert("test");
+	var req = createAjaxObj();
+    req.open("get",baseUrl+"method=kLineData",false);
+    req.setRequestHeader("accept","application/json");
+    req.onreadystatechange = function(){
+    	alert(req.readyState);
+    	alert(req.status);
+        if (req.readyState==4 && req.status == 200) {
+        	//alert(req.responseText);
+        	eval("var result="+req.responseText);
+        	for(var i=0;i<result.length;i++){
+        		alert(result[i].increase);
+        	}
+        }
+    }
+    req.send(null);
+}
+function volumeData(){
+	var req = createAjaxObj();
+	req.open("get",baseUrl+"method=volumeData",false);
+	req.setRequestHeader("accept","application/json");
+	req.onreadystatechange = function(){
+		if(req.readyState==4&&req.statue==200){
+		alert(req.responseText);
+		
+		}
+	}
+	req.send(null);
+}
 
-
+//********************************************************************************************************************
 function getStockList()
 {
 	//var result;

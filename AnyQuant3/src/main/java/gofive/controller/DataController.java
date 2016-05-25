@@ -41,8 +41,8 @@ public class DataController {
 	    //return list;
 	  }
 	  
-	  @RequestMapping(params="method=KLineData",method=RequestMethod.GET)
-	  public @ResponseBody List<KLineChartVO> KLineData() throws Exception{ 
+	  @RequestMapping(params="method=kLineData",method=RequestMethod.GET)
+	  public @ResponseBody List<KLineChartVO> kLineData() throws Exception{ 
 	     String id = "grail";
 	     String start ="2016-03-01";
 	     String end = "2016-04-01";
@@ -57,8 +57,8 @@ public class DataController {
 	    //return list;
 	  }
 	  
-	  @RequestMapping(params="method=VolumeData",method=RequestMethod.GET)
-	  public @ResponseBody double[] VolumeData() throws Exception{ 
+	  @RequestMapping(params="method=volumeData",method=RequestMethod.GET)
+	  public @ResponseBody double[] volumeData() throws Exception{ 
 	    String id = "grail";
 	    String start = "2016-03-01";
 	    String end = "2016-04-01";
