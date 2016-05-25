@@ -78,7 +78,7 @@ public interface StockService {
 	 * @param date 日期
 	 * @return 结论描述
 	 */
-	public IndicatorVO[] getStatisticsConclusion(String id,String date);
+	public IndicatorVO[] getConclusion(String id,String date,String indicator);
 
 	/**
 	 * 获取绘制振幅图所用数据

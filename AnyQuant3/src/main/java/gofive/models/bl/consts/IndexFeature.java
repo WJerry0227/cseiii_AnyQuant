@@ -35,19 +35,19 @@ public enum IndexFeature {
     private static HashMap<IndexFeature, String> name = new HashMap<>();
 
     static {
-        desc.put(BOLL_UP_CROSS_MD, "股价向上穿过中轨，应该加仓买进。");
-        desc.put(BOLL_UP_CROSS_LOW, "股价向上穿过下轨， 应该买入。");
+        desc.put(BOLL_UP_CROSS_MD, "股价由下向上穿过中轨线，建议加仓买进。");
+        desc.put(BOLL_UP_CROSS_LOW, "股价由下向上穿过下轨线，建议加仓买进。");
         desc.put(BOLL_FLUC_BETWEEN_MD_UP, "股价在中轨和上轨之间波动，为多头市场，应该持股观望。");
         desc.put(BOLL_DOWN_CROSS_MIDDLE_AFTER_FLUC, "股价在中轨与上轨之间长期运行，然后向下突破中轨，此时应该卖出。");
         desc.put(BOLL_DOWN_CROSS_UP, "股价向上强烈突破上轨线，由上轨外跌落上轨，注意短线高抛了结，应该卖出。");
 
-        desc.put(KDJ_EXTRA_BUY, "k d j值均大于80, 此时处于超买区，应该卖出股票。");
-        desc.put(KDJ_EXTRA_SELL, "k d j值均小于20，此时处于超卖区，适合买入股票");
+        desc.put(KDJ_EXTRA_BUY, "k d j值均大于80, 此时处于超买区，建议卖出股票。");
+        desc.put(KDJ_EXTRA_SELL, "k d j值均小于20，此时处于超卖区，建议买入股票");
         desc.put(KDJ_GOLDEN_CROSS, "一段时间内k d j处于50以下或在50附近且股价稳定，j线，k线同时向上击穿d线，适合买入");
         desc.put(KDJ_SWING,"短期内k d j均在20至80范围内徘徊，建议持仓观望");
         desc.put(KDJ_DEATH_CROSS, "股价短期内上升，k d j均在80以上，kj同时向下击穿d线,适合卖出");
 
-        desc.put(WR_UP,"短期内股价呈现上升趋势，可谨慎参与短线操作");
+        desc.put(WR_UP,"短期内W&R指数呈上升趋势，建议谨慎参与短线操作");
         desc.put(WR_DOWN,"短期内股价成下跌趋势，建议减少短线操作");
         desc.put(WR_STAY,"W&R指数较平稳，建议持仓观望");
         desc.put(WR_SUPER_BUY,"W&R指数低于20，可能超买见顶，建议卖出");
@@ -63,7 +63,7 @@ public enum IndexFeature {
 
     static {
         name.put(BOLL_UP_CROSS_LOW, "上穿boll下轨");
-        name.put(BOLL_UP_CROSS_MD, "上传boll中轨");
+        name.put(BOLL_UP_CROSS_MD, "上穿boll中轨");
         name.put(BOLL_FLUC_BETWEEN_MD_UP, "浮动于boll中上轨");
         name.put(BOLL_DOWN_CROSS_MIDDLE_AFTER_FLUC, "长期浮动后跌破boll中轨");
         name.put(BOLL_DOWN_CROSS_UP, "激涨后跌破boll下轨");

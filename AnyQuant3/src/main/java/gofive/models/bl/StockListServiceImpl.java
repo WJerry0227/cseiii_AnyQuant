@@ -7,27 +7,29 @@ import gofive.vo.RankingChartVO;
 import gofive.vo.StockVO;
 import gofive.vo.chart.IndustryChartVO;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 /**
  * Created by xu on 2016/5/18.
  */
 public class StockListServiceImpl implements StockListService {
 
-    public static void main(String[] args) {
-        StockListService stockListService = new StockListServiceImpl();
-    }
+//    public static void main(String[] args) {
+//        StockListService stockListService = new StockListServiceImpl();
+//    }
     HashMap<Industry , StockClass> stockClasses;
     Industry[] industries = Industry.values();
     public StockListServiceImpl(){
+        long start = System.currentTimeMillis();
         stockClasses = new HashMap<>();
         for (int i = 0 ; i < industries.length; i++){
             StockClass stockClass = new StockClass(industries[i]);
-//            System.out.println("industry:" + stockClass.getIndustryName() + " done");
+            System.out.println("industry:" + stockClass.getIndustryName() + " done");
+            System.out.println("avg:" + stockClass.getAvgUp(5));
         }
+        long end = System.currentTimeMillis();
+        System.out.println("times:" + (end - start) );
     }
     @Override
     public StockVO[] getStockList() {

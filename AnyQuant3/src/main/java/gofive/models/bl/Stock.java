@@ -1,4 +1,5 @@
 package gofive.models.bl;
+import gofive.models.bl.consts.IndexFeature;
 import gofive.models.bl.indicator.*;
 import gofive.models.db.DBase;
 import gofive.models.db.StockInfo;
@@ -11,6 +12,7 @@ import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -43,25 +45,36 @@ public class Stock {//pass
 //        System.out.println("");
 //    }
 
+    public static void main(String[] args) {
+        Stock s = new Stock("600000");
+        IndicatorVO[] vos = s.getConclusion("2016-02-10","WR");
+        IndicatorVO[] vos1 = s.getConclusion("2016-02-10","KDJ");
+        IndicatorVO[] vos2 = s.getConclusion("2016-02-10","BOLL");
+        System.out.println();
+    }
+
     private String id;
     private String name;
     private HashMap<String,Indicator> indicators;   //所有指标 key = IndicatorType
     private DBase[] data;                           //数据
-//    private StockInfo table;                        //可供查询的股票数据对象
 
     /**
      * 获取近期数据
      * @param id 股票编号
-     * @param flag 标志位
+     * @param days 距今多少天
      */
-    public Stock (String id, int flag){
+    public Stock (String id, int days){
         StockName name = StockName.getInstance();
         this.id = id;
         this.name = name.getName(id);
         LocalDate now = LocalDate.now();
-        now.minusDays(10);
-        String n = now.toString();
-        data = StockInfo.query(id).where("volume > 0 and date > "+n);
+        LocalDate dest = now.minusDays(days);
+        String sql = "volume > 0 and date > \""+ dest.toString() + "\"";
+        System.out.println(sql);
+        data = StockInfo.query(id).where(sql);
+        if (data != null){
+            System.out.println("get:" + id + " " + data.length);
+        }
     }
 
     /**
@@ -74,14 +87,16 @@ public class Stock {//pass
         this.name = name.getName(id);
         data = StockInfo.query(id).where("volume > 0");
         if (data != null){
-            System.out.println("get:" + id);
+            System.out.println("get:" + id + " " + data.length);
         }
         indicators = new HashMap<>();
     }
 
     public double getAvg(int day){
-        if (day < data.length - 1) return -1;
-        double 
+        if (data.length < (day + 1)) return -1;
+        double a = (double) data[data.length - 1].get("close");
+        double b = (double) data[data.length - 1 - day].get("close");
+        return (a - b) / b;
     }
 
     public Stock(){ }
@@ -304,68 +319,42 @@ public class Stock {//pass
 
     }
 
-    public IndicatorVO[] getStatisticsConclusion(String date) {
-        //todo this interface is not good
-        int end = getStart(date);
-        int num = 30;
-        double[] ups = new double[num];
-        double[] mbs = new double[num];
-        double[] downs = new double[num];
-        double[] closes = new double[num];
-
-        double[] MACD = new double[num];
-        double[] MACDsignal = new double[num];
-        double[] MACDhist = new double[num];
-        double[] ema12 = new double[num];
-        double[] ema26 = new double[num];
-
-        double[] k = new double[num];
-        double[] d = new double[num];
-        double[] j = new double[num];
-
-        double[] wr = new double[num];
-
-        double[] rsi6 = new double[num];
-        double[] rsi12 = new double[num];
-
-        for (int i = end - num; i < end; i++){
-            int index = i - (end - num);
-            DBase dBase = data[i];
-
-            ups[index] = (double) data[i].get("BOLL_U");
-            mbs[index] = (double) data[i].get("BOLL_M");
-            downs[index] = (double) data[i].get("BOLL_D");
-            closes[index] = (double) data[i].get("close");
-
-            k[index] = (double) data[i].get("K9");
-            d[index] = (double) data[i].get("D9");
-            j[index] = (double) data[i].get("J9");
-
-            MACD[index] = (double) data[i].get("MACD");
-            MACDsignal[index] = (double) data[i].get("MACDsignal");
-            MACDhist[index] = (double) data[i].get("MACDhist");
-            ema12[index] = (double) data[i].get("EMA12");
-            ema26[index] = (double) data[i].get("EMA26");
-
-            rsi6[index] = (double) data[i].get("RSI6");
-            rsi12[index] = (double) data[i].get("RSI12");
-
-            wr[index] = (double) data[i].get("WR14");
+    public IndicatorVO[] getConclusion(String date,String indicator) {
+        Indicator in = indicators.get(indicator);
+        if (in == null) {
+            LocalDate dest  = LocalDate.parse(date);
+            LocalDate start = dest.minusDays(30);
+            switch (indicator) {
+                case "MACD":
+                    getMACDChart(start.toString(), date);
+                    in = indicators.get(indicator);
+                    break;
+                case "KDJ":
+                    getKDJChartVO(start.toString(), date);
+                    in = indicators.get(indicator);
+                    break;
+                case "WR":
+                    getWRChartVO(start.toString(), date);
+                    in = indicators.get(indicator);
+                    break;
+                case "RSI":
+                    getRSIChartVO(start.toString(),date);
+                    in = indicators.get(indicator);
+                    break;
+                case "BOLL":
+                    getBOLLChartVO(start.toString(),date);
+                    in = indicators.get(indicator);
+                    break;
+                default:
+                    return null;
+            }
+        };
+        IndexFeature[] features = in.analysis();
+        IndicatorVO[] vos = new IndicatorVO[features.length];
+        for (int i = 0 ; i < features.length ; i ++){
+            vos[i] = new IndicatorVO(features[i].getName(),features[i].getDescription());
         }
-
-        Indicator macd = new MACD(MACD,MACDsignal,MACDhist,ema12,ema26);
-        Indicator kdj = new KDJ(k,d,j);
-        Indicator boll = new BOLL(ups,mbs,downs,closes);
-        Indicator rsi = new RSI(rsi6,rsi12);
-        Indicator w = new WR(wr);
-//        indicators.put("MACD",macd);
-//        indicators.put("KDJ",kdj);
-//        indicators.put("RSI",rsi);
-//        indicators.put("BOLL",boll);
-//        indicators.put("WR",w);
-        return  null;
-
-
+        return  vos;
     }
 
     public DataList[] getSwingList(String startTime, String endTime) {

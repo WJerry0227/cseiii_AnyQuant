@@ -1,6 +1,7 @@
 package gofive.controller;
 
 import gofive.service.StockService;
+
 import gofive.vo.IndicatorVO;
 import gofive.vo.StockVO;
 import gofive.vo.chart.BOLLChartVO;
@@ -10,6 +11,8 @@ import gofive.vo.chart.KLineChartVO;
 import gofive.vo.chart.MACDChartVO;
 import gofive.vo.chart.RSIChartVO;
 import gofive.vo.chart.WRChartVO;
+import gofive.vo.chart.*;
+
 
 public class StockServiceStub implements StockService {
 
@@ -35,12 +38,7 @@ public class StockServiceStub implements StockService {
 	@Override
 	public KDJChartVO[] getKDJChartVO(String id, String start, String end) {
 		// TODO Auto-generated method stub
-		KDJChartVO singleVO1 = new KDJChartVO(1,2,4,"");
-		KDJChartVO singleVO2 = new KDJChartVO(1,2,4,"");
-		KDJChartVO[] dataArray = new KDJChartVO[2];
-		dataArray[0] = singleVO1;
-		dataArray[1] = singleVO2;
-		return dataArray;
+		return null;
 	}
 
 	@Override
@@ -72,22 +70,20 @@ public class StockServiceStub implements StockService {
 		return dataArray;
 	}
 
+	
 	@Override
-	public IndicatorVO[] getStatisticsConclusion(String id, String date) {
-		// TODO Auto-generated method stub
-		return null;
+	public IndicatorVO[] getConclusion(String id, String date, String indicator) {
+		return new IndicatorVO[0];
 	}
 
 	@Override
 	public DataList[] getSwingList(String id, String startTime, String endTime) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DataList[0];
 	}
 
 	@Override
 	public DataList[] getVolumeList(String id, String startTime, String endTime) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DataList[0];
 	}
 
 }
