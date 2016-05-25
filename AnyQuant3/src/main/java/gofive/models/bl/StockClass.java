@@ -113,7 +113,6 @@ public class StockClass {
         while (true){
             if (fixedThreadPool.isTerminated()){
                 System.out.println("done!");
-//                fixedThreadPool.shutdown();
                 break;
             }
             try {

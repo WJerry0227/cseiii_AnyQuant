@@ -1,4 +1,5 @@
 package gofive.models.bl;
+import gofive.models.bl.consts.IndexFeature;
 import gofive.models.bl.indicator.*;
 import gofive.models.db.DBase;
 import gofive.models.db.StockInfo;
@@ -11,6 +12,7 @@ import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -42,6 +44,13 @@ public class Stock {//pass
 //        Stock s2 = new Stock("000159");
 //        System.out.println("");
 //    }
+
+    public static void main(String[] args) {
+        Stock s = new Stock("600000");
+        s.getWRChartVO("2016-01-01","2016-03-10");
+        IndicatorVO[] vos = s.getConclusion("a","WR");
+        System.out.println();
+    }
 
     private String id;
     private String name;
@@ -310,68 +319,71 @@ public class Stock {//pass
 
     }
 
-    public IndicatorVO[] getStatisticsConclusion(String date) {
-        //todo this interface is not good
-        int end = getStart(date);
-        int num = 30;
-        double[] ups = new double[num];
-        double[] mbs = new double[num];
-        double[] downs = new double[num];
-        double[] closes = new double[num];
-
-        double[] MACD = new double[num];
-        double[] MACDsignal = new double[num];
-        double[] MACDhist = new double[num];
-        double[] ema12 = new double[num];
-        double[] ema26 = new double[num];
-
-        double[] k = new double[num];
-        double[] d = new double[num];
-        double[] j = new double[num];
-
-        double[] wr = new double[num];
-
-        double[] rsi6 = new double[num];
-        double[] rsi12 = new double[num];
-
-        for (int i = end - num; i < end; i++){
-            int index = i - (end - num);
-            DBase dBase = data[i];
-
-            ups[index] = (double) data[i].get("BOLL_U");
-            mbs[index] = (double) data[i].get("BOLL_M");
-            downs[index] = (double) data[i].get("BOLL_D");
-            closes[index] = (double) data[i].get("close");
-
-            k[index] = (double) data[i].get("K9");
-            d[index] = (double) data[i].get("D9");
-            j[index] = (double) data[i].get("J9");
-
-            MACD[index] = (double) data[i].get("MACD");
-            MACDsignal[index] = (double) data[i].get("MACDsignal");
-            MACDhist[index] = (double) data[i].get("MACDhist");
-            ema12[index] = (double) data[i].get("EMA12");
-            ema26[index] = (double) data[i].get("EMA26");
-
-            rsi6[index] = (double) data[i].get("RSI6");
-            rsi12[index] = (double) data[i].get("RSI12");
-
-            wr[index] = (double) data[i].get("WR14");
-        }
-
-        Indicator macd = new MACD(MACD,MACDsignal,MACDhist,ema12,ema26);
-        Indicator kdj = new KDJ(k,d,j);
-        Indicator boll = new BOLL(ups,mbs,downs,closes);
-        Indicator rsi = new RSI(rsi6,rsi12);
-        Indicator w = new WR(wr);
+    public IndicatorVO[] getConclusion(String date,String indicator) {
+//        int end = getStart(date);
+//        int num = 30;
+//        double[] ups = new double[num];
+//        double[] mbs = new double[num];
+//        double[] downs = new double[num];
+//        double[] closes = new double[num];
+//
+//        double[] MACD = new double[num];
+//        double[] MACDsignal = new double[num];
+//        double[] MACDhist = new double[num];
+//        double[] ema12 = new double[num];
+//        double[] ema26 = new double[num];
+//
+//        double[] k = new double[num];
+//        double[] d = new double[num];
+//        double[] j = new double[num];
+//
+//        double[] wr = new double[num];
+//
+//        double[] rsi6 = new double[num];
+//        double[] rsi12 = new double[num];
+//
+//        for (int i = end - num; i < end; i++){
+//            int index = i - (end - num);
+//            DBase dBase = data[i];
+//
+//            ups[index] = (double) data[i].get("BOLL_U");
+//            mbs[index] = (double) data[i].get("BOLL_M");
+//            downs[index] = (double) data[i].get("BOLL_D");
+//            closes[index] = (double) data[i].get("close");
+//
+//            k[index] = (double) data[i].get("K9");
+//            d[index] = (double) data[i].get("D9");
+//            j[index] = (double) data[i].get("J9");
+//
+//            MACD[index] = (double) data[i].get("MACD");
+//            MACDsignal[index] = (double) data[i].get("MACDsignal");
+//            MACDhist[index] = (double) data[i].get("MACDhist");
+//            ema12[index] = (double) data[i].get("EMA12");
+//            ema26[index] = (double) data[i].get("EMA26");
+//
+//            rsi6[index] = (double) data[i].get("RSI6");
+//            rsi12[index] = (double) data[i].get("RSI12");
+//
+//            wr[index] = (double) data[i].get("WR14");
+//        }
+//
+//        Indicator macd = new MACD(MACD,MACDsignal,MACDhist,ema12,ema26);
+//        Indicator kdj = new KDJ(k,d,j);
+//        Indicator boll = new BOLL(ups,mbs,downs,closes);
+//        Indicator rsi = new RSI(rsi6,rsi12);
+//        Indicator w = new WR(wr);
 //        indicators.put("MACD",macd);
 //        indicators.put("KDJ",kdj);
 //        indicators.put("RSI",rsi);
 //        indicators.put("BOLL",boll);
 //        indicators.put("WR",w);
-        return  null;
-
-
+        Indicator in = indicators.get(indicator);
+        IndexFeature[] features = in.analysis();
+        ArrayList<IndicatorVO> vos = new ArrayList<>();
+        for (int i = 0 ; i < features.length; i ++){
+            IndicatorVO v = new IndicatorVO(features[i].getName(),features[i].getDescription());
+        }
+        return  vos.toArray(new IndicatorVO[vos.size()]);
     }
 
     public DataList[] getSwingList(String startTime, String endTime) {
