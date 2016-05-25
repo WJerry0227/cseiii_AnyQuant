@@ -10,12 +10,12 @@ import java.util.ArrayList;
  * Created by xu on 2016/5/14.
  */
 public class WR extends Indicator {
-    double a = Double.NaN;
+    double a = 0;
     double[] wr;
     @Override
     public IndexFeature[] analysis() {
         ArrayList<IndexFeature> features = new ArrayList<>();
-        if(a == Double.NaN) forecast();
+        if(a == 0) forecast();
         if(a > 0) features.add(IndexFeature.WR_UP);
         else if (a < 0) features.add(IndexFeature.WR_DOWN);
         double latest = wr[wr.length - 1];
@@ -30,7 +30,7 @@ public class WR extends Indicator {
         int flag = 0;
         double[] temp = wr;
         ArrayList<Double> wr = new ArrayList<>();
-        for(int i = 0 ; i < temp.length; i++) { wr.add(temp[i]);}
+        for(int i = temp.length - 10 ; i < temp.length; i++) { wr.add(temp[i]);}
         LinearRegrassion lr = new LinearRegrassion(wr);
         a = lr.getA();
         if(a > 0) flag += 1;

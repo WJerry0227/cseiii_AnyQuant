@@ -15,9 +15,9 @@ import java.util.*;
  */
 public class StockListServiceImpl implements StockListService {
 
-    public static void main(String[] args) {
-        StockListService stockListService = new StockListServiceImpl();
-    }
+//    public static void main(String[] args) {
+//        StockListService stockListService = new StockListServiceImpl();
+//    }
     HashMap<Industry , StockClass> stockClasses;
     Industry[] industries = Industry.values();
     public StockListServiceImpl(){

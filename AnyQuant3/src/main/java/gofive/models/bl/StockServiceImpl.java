@@ -14,9 +14,6 @@ import java.util.HashMap;
 public class StockServiceImpl implements StockService{
     Stock stock ;       //持有一支股票的详细数据
 
-//    public StockServiceImpl(){
-//        stock = new Stock();
-//    }
     @Override
     public StockVO getTodayStockVO(String id) {
         if((stock == null) || (!stock.getId().equals(id))){
@@ -83,18 +80,25 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public IndicatorVO[] getConclusion(String id, String date, String indicator) {
-        return new IndicatorVO[0];
+        if((stock == null) || (!stock.getId().equals(id))){
+            stock = new Stock(id);
+        }
+        return stock.getConclusion(date,indicator);
     }
-
-
 
     @Override
     public DataList[] getSwingList(String id, String startTime, String endTime) {
-        return new DataList[0];
+        if((stock == null) || (!stock.getId().equals(id))){
+            stock = new Stock(id);
+        }
+        return stock.getSwingList(startTime,endTime);
     }
 
     @Override
     public DataList[] getVolumeList(String id, String startTime, String endTime) {
-        return new DataList[0];
+        if((stock == null) || (!stock.getId().equals(id))){
+            stock = new Stock(id);
+        }
+        return stock.getVolumeList(startTime,endTime);
     }
 }
