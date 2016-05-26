@@ -26,13 +26,26 @@ public class StockServiceStub implements StockService {
 	@Override
 	public StockVO[] getStock(String id, String start, String end) {
 		// TODO Auto-generated method stub
-		return null;
+		StockVO singleVO1  = new StockVO(end, end, end, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		StockVO singleVO2  = new StockVO(end, end, end, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+		//StockVO singleVO2  = new StockVO(end, end, end, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+		//StockVO singleVO2  = new StockVO(end, end, end, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+		StockVO[] dataArray = new StockVO[2];
+		dataArray[0] = singleVO1;
+		dataArray[1] = singleVO2;
+		return dataArray;
 	}
 
 	@Override
 	public MACDChartVO[] getMACDChart(String id, String start, String end) {
 		// TODO Auto-generated method stub
-		return null;
+		//String date,double macd, double ema12, double ema26, double diff, double bar
+		MACDChartVO singleVO = new MACDChartVO("2016-05-25",23.23,23.2,2,2,2);
+		MACDChartVO singleVO2 = new MACDChartVO("2016-05-26",23.26,26.6,6,6,6);
+		MACDChartVO[] dataArray = new MACDChartVO[2];
+		dataArray[0] = singleVO;
+		dataArray[1] = singleVO2;
+		return dataArray;
 	}
 
 	@Override
